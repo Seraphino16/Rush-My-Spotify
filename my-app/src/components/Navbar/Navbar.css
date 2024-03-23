@@ -12,9 +12,18 @@
     top: 0;
     left: 0;
   }
+
+  .navbar-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 0.5em;
+    margin-top: -2px;
+  }
   
   .navbar-brand {
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
   }
   
   .navbar-menu {

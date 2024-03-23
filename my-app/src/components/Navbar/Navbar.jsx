@@ -9,6 +9,7 @@ function Navbar() {
         <nav className="navbar">
             <div className="navbar-brand">
                 <FaSpotify className="spotify-icon" />
+                <span className='navbar-title'>Spotify</span>
             </div>
             <ul className="navbar-menu">
                 <li className="navbar-item">

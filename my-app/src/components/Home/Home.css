@@ -1,0 +1,22 @@
+.home {
+    margin-left: 300px;
+}
+
+.album-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+  }
+  
+  .album {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .album img {
+    width: 100%; 
+  }
+  
+  .album h3, .album p {
+    margin: 0;
+  }
