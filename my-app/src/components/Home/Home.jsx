@@ -40,7 +40,7 @@ function Home() {
 
 
     return (
-        <div className="home">
+        <div className="main">
           <h1>Bienvenue sur Spotify</h1>
           <h2>Que voulez-vous écouter ? </h2>
           <div className="album-container">

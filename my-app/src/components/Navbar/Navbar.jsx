@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { NavLink } from 'react-router-dom';
 import { FaSpotify } from "react-icons/fa";
 import './Navbar.css';
 
@@ -13,18 +13,20 @@ function Navbar() {
             </div>
             <ul className="navbar-menu">
                 <li className="navbar-item">
-                    <Link to="/">Accueil</Link> 
+                    <NavLink to="/" exact activeClassName="active">Accueil</NavLink>
                 </li>
                 <li className="navbar-item">
-                    <Link to="/albums">Albums</Link>
+                    <NavLink to="/albums">Albums</NavLink>
                 </li>
                 <li className="navbar-item">
-                    <Link to="/genres">Genres</Link>
+                    <NavLink to="/genres" activeClassName="active">Genres</NavLink>
                 </li>
                 <li className="navbar-item">
-                    <Link to="/artists">Artistes</Link>
+                    <NavLink to="/artists">Artistes</NavLink>
                 </li>
-                
+                <li className="navbar-item">
+                    <NavLink to="/search">Recherche</NavLink>
+                </li>
             </ul>
         </nav>
     )
