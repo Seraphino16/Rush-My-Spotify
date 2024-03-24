@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // Fonction Header pour afficher l'en-tête de la page
 function Header() {
     return (
-        <div className='header-list'>
+        <div className='header-list main'>
             <h2 className='title-list'>Liste des Albums</h2>
         </div>
     );
@@ -18,12 +18,12 @@ function List({ albums }) {
     const secondHalf = albums.slice(middleIndex);
 
     return (
-        <div className="albums-container">
+        <div className="albums-container main">
             <div className="column-left">
                 <ul>
                     {firstHalf.map(album => (
                         <li key={album.id}>
-                            <Link to={`/album/${album.id}`} className="album-link">{album.name}</Link>
+                            <Link to={`/albums/${album.id}`} className="album-link">{album.name}</Link>
                         </li>
                     ))}
                 </ul>
@@ -32,7 +32,7 @@ function List({ albums }) {
                 <ul>
                     {secondHalf.map(album => (
                         <li key={album.id}>
-                            <Link to={`/album/${album.id}`} className="album-link">{album.name}</Link>
+                            <Link to={`/albums/${album.id}`} className="album-link">{album.name}</Link>
                         </li>
                     ))}
                 </ul>
@@ -100,7 +100,7 @@ function AlbumList() {
         <div>
             <Header />
             <GetData page={page} setPage={setPage} limit={limit} />
-            <div className='navigation'>
+            <div className='navigation main'>
                 <button onClick={handlePrevPage} disabled={page === 1}>&#9664;</button>
                 <span> Page <input type="number" value={inputPage} onChange={handleInputChange} onBlur={handlePageBlur} /> sur {totalPages} </span>
                 <button onClick={handleNextPage} disabled={page === totalPages}>&#9654;</button>

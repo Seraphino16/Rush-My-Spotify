@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaSpotify } from "react-icons/fa";
-import './Navbar.css';
+
 
 function Navbar() {
 

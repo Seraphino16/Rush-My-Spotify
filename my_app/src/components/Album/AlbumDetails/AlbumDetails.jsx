@@ -34,7 +34,7 @@ function AlbumInfo({ albumDetails }) {
 // Fonction pour afficher la liste des pistes de l'album
 function AlbumTrackList({ currentTrackName, currentTrack, isPlaying, togglePlay, playPreviousTrack, playNextTrack, albumDetails }) {
     return (
-        <div>
+        <div className='main'>
             <h1 className='title-track'>Lecteur audio</h1>
             <h4>{currentTrackName}</h4>
             <audio
