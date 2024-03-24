@@ -14,7 +14,7 @@ function List({data})
     const listArtists = data.map(artist =>
         
         <li key={artist.id} className='artist-item'>
-            <Link to={`/artistPage/${artist.id}`} style={{textDecoration: 'none'}}>
+            <Link to={`/artists/${artist.id}`} style={{textDecoration: 'none'}}>
                 <div className='artist-card'>
                     <h3>{artist.name}</h3>
                     <div className='img-container'>
