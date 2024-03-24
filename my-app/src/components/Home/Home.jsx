@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
@@ -47,8 +48,10 @@ function Home() {
 
             {randomAlbums.map(album => (
               <div key={album.id} className="album">
-                <img src={album.cover} alt={album.name} />
-                <h3>{album.name}</h3>
+                <Link to={`/albums/${album.id}`}>
+                  <img src={album.cover} alt={album.name} />
+                  {album.name}
+              </Link>
               </div>
             ))}
           </div>

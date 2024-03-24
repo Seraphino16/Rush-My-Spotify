@@ -7,6 +7,8 @@ import GenreDetails from './components/Genres/GenreDetails/GenreDetails';
 import GenresList from './components/Genres/GenreList/GenresList';
 import AlbumList from './components/Album/AlbumList/AlbumList';
 import AlbumDetails from './components/Album/AlbumDetails/AlbumDetails';
+import ListArtist from './components/Artists/ArtistList/ArtistList';
+import ArtistDetails from './components/Artists/ArtistDetails/ArtistDetails';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/genres/:genreId" exact component={GenreDetails} />
           <Route path="/albums" exact component={AlbumList} />
           <Route path="/albums/:id" exact component={AlbumDetails} /> 
+          <Route path="/artists" exact component={ListArtist}></Route>
+          <Route path="/artists/:id" exact component={ArtistDetails}></Route>
         </Switch>
       </div>
     </div>
