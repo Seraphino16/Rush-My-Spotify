@@ -25,10 +25,12 @@ function GetData({id}) {
 function Artist({artist}) {
 
     return (
-        <div className='artist-info-container'>            
-            <img src={artist.photo} 
-                alt={artist.name}
-            />
+        <div className='artist-info-container'>
+            <div className='img-container'>          
+                <img src={artist.photo} 
+                    alt={artist.name}
+                />
+            </div>
             <ArtistInfo artist={artist}/>
         </div>
     )
@@ -44,15 +46,6 @@ function ArtistInfo({artist}) {
         </div>
     )
 }
-
-function Header() {
-    return (
-        <div className='header'>
-            <h1>Artist</h1>
-        </div>
-    )
-}
-
 
 function GetAlbums({id}) {
 
@@ -70,6 +63,7 @@ function GetAlbums({id}) {
     return (
         <div className='albums-container'>
             <h1>Albums</h1>
+            <hr />
              {albums ? <AlbumContainer albums={albums}/> : 'Loading...'}
         </div>
     )
@@ -81,7 +75,6 @@ function Content() {
 
     return (
         <div className='Artist main'>
-            <Header />
             <GetData id={id} />
             <GetAlbums id={id} />
         </div>

@@ -194,7 +194,6 @@ audio {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  /* justify-content: center; */
 }
 
 .artist-card {
@@ -226,8 +225,46 @@ audio {
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
+  border-radius: 6px;
 }
 
 .artist-card:hover h3 {
   color: #1ed760;
+}
+
+.artist-info-container {
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+}
+
+.artist-info-container .img-container {
+  display: flex;
+  align-items: center;
+}
+
+.artist-info-container img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 6px;
+}
+
+.info {
+  padding: 0 20px;
+  margin-left: 20px;
+  width: 80%;
+}
+
+.info h1 {
+  font-size: 3em;
+  margin-bottom: 12px;
+}
+
+.info-description {
+  font-size: 1.5em;
+}
+
+hr {
+  width: 80vw;
+  margin-left: 0;
 }
