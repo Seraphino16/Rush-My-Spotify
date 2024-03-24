@@ -1,18 +1,18 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import AlbumContainer from '../../Album/AlbumContainer';
 
 function GetData({id}) {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:8000/artists/` + id)
+        fetch(`http://localhost:8000/artists/${id}`)
             .then(response => response.json())
             .then(json => {
                 setData(json);
-            console.log(json)
             } )
             .catch(error => console.error(error));
-    }, []);
+    }, [id]);
 
     return (
         <div className='list-container'>
@@ -25,7 +25,7 @@ function GetData({id}) {
 function Artist({artist}) {
 
     return (
-        <div className='artist-info-container main'>            
+        <div className='artist-info-container'>            
             <img src={artist.photo} 
                 alt={artist.name}
             />
@@ -47,22 +47,45 @@ function ArtistInfo({artist}) {
 
 function Header() {
     return (
-        <div className='header main'>
+        <div className='header'>
             <h1>Artist</h1>
         </div>
     )
 }
 
-function ArtistDetails() {
 
-    const { id } = useParams();
+function GetAlbums({id}) {
+
+    const [albums, setAlbums] = useState(null);
+
+    useEffect(() => {
+        fetch(`http://localhost:8000/albums/artist/${id}`)
+            .then(response => response.json())
+            .then(json => {
+                setAlbums(json);
+            } )
+            .catch(error => console.error(error));
+    }, [id]);
 
     return (
-        <div className='Artist'>
-            <Header />
-            <GetData id={id}/>
+        <div className='albums-container'>
+            <h1>Albums</h1>
+             {albums ? <AlbumContainer albums={albums}/> : 'Loading...'}
         </div>
     )
 }
 
-export default ArtistDetails;
+function Content() {
+
+    const { id } = useParams();
+
+    return (
+        <div className='Artist main'>
+            <Header />
+            <GetData id={id} />
+            <GetAlbums id={id} />
+        </div>
+    )
+}
+
+export default Content;
