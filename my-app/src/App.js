@@ -9,6 +9,7 @@ import AlbumList from './components/Album/AlbumList/AlbumList';
 import AlbumDetails from './components/Album/AlbumDetails/AlbumDetails';
 import ListArtist from './components/Artists/ArtistList/ArtistList';
 import ArtistDetails from './components/Artists/ArtistDetails/ArtistDetails';
+import Search from './components/Search/Search';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/albums/:id" exact component={AlbumDetails} /> 
           <Route path="/artists" exact component={ListArtist}></Route>
           <Route path="/artists/:id" exact component={ArtistDetails}></Route>
+          <Route path="/search/" exact component={Search}></Route>
         </Switch>
       </div>
     </div>
