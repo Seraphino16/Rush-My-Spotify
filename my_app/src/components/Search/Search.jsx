@@ -11,6 +11,7 @@ function Search() {
 
   const [searchResults, setSearchResults] = useState([]);
 
+  // Fonction pour détecter les lettres rentrées dans l'input
   const handleInputChange = (e) => {
     const newSearchTerm = e.target.value;
     setSearchTerm(newSearchTerm);
@@ -30,9 +31,10 @@ function Search() {
       throw new Error('Erreur lors de la recherche');
     }
     const data = await response.json();
-    console.log(data);
+   
     let results = [];
 
+    // Apllication du filtre coché et ajout du type
     if (checkedFilters.album) {
         results = data.albums.map(album => ({ ...album, type: 'albums' }));
       } else if (checkedFilters.artist) {
@@ -41,6 +43,7 @@ function Search() {
         results = data.genres.map(genre => ({ ...genre, type: 'genres' }));
       }
 
+    // Afficher les résultats qui commence par le terme écrit
     if (searchTerm) {
       results = results.filter(item => item.name.toLowerCase().startsWith(searchTerm.toLowerCase()));
     }
@@ -51,6 +54,7 @@ function Search() {
   }
 };
  
+  // Fonction pour gérer l'état des checkbox
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
     setCheckedFilters(prevFilters => ({
@@ -61,7 +65,8 @@ function Search() {
   };
 
   return (
-    <div className='main'>
+    <div className='main search-container'>
+      <h2>Chercher un album, un artiste ou un genre de musique</h2>
     <input
       type="checkbox"
       name="album"

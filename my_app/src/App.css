@@ -8,6 +8,7 @@ body {
 
 .main {
   margin-left: 300px;
+  margin-top: 50px;
 }
 
 .album-container {
@@ -27,4 +28,69 @@ body {
   width: 100%; 
   margin-bottom: 5px;
 }
+
+.spotify-icon {
+  color: #1ed760;
+  font-size: 2rem;
+}
+
+.navbar {
+  background-color: rgba(68, 67, 67, 0.2);
+  padding: 20px;
+  height: 100vh;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.navbar-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-left: 0.5em;
+  margin-top: -2px;
+}
+
+.navbar-brand {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.navbar-item {
+  margin-bottom: 10px;
+}
+
+.navbar-item a, label {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.navbar-item a:hover, 
+label:hover {
+  color: #1ed760;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid rgba(68, 67, 67, 0.2);
+  border-radius: 4px;
+  font-size: 14px;
+  background-color:  rgba(133, 133, 133, 0.2);
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #1ED760;
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.2);
+}
+
+
 

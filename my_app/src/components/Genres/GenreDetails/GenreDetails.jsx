@@ -11,6 +11,8 @@ function GenreDetails() {
   useEffect(() => {
     const fetchGenreDetails = async () => {
       try {
+
+        // Récuppérer les id des albums qui correspondent au genre
         const response = await fetch(`http://localhost:8000/genres/${genreId}`);
         if (!response.ok) {
           throw new Error('Erreur lors de la récupération des détails du genre');
@@ -19,6 +21,7 @@ function GenreDetails() {
         setGenre(data.genre);
         const albumIds = data.albums;
 
+        // Récupérer les données des albums de leur id
         const albumsData = await Promise.all(albumIds.map(async (albumId) => {
           const albumResponse = await fetch(`http://localhost:8000/albums/${albumId}`);
           if (!albumResponse.ok) {
@@ -38,7 +41,7 @@ function GenreDetails() {
     fetchGenreDetails();
   }, [genreId]);
 
- 
+  // Calcul de la pagination
   const indexOfFirstAlbum = (currentPage - 1) * albumsPerPage;
   const indexOfLastAlbum = indexOfFirstAlbum + albumsPerPage;
   const currentAlbums = albums.slice(indexOfFirstAlbum, indexOfLastAlbum);

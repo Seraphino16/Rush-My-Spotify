@@ -25,6 +25,7 @@ function Home() {
         }
     };
 
+    // Fonction pour mélanger aléatoirement les résultats
     const shuffleArray = array => {
         const shuffledArray = [...array];
         shuffledArray.forEach((_, index) => {
