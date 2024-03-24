@@ -1,11 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import { Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-function AlbumList() {
+// Fonction Header pour afficher l'en-tête de la page
+function Header() {
+    return (
+        <div className='header-list'>
+            <h2 className='title-list'>Liste des Albums</h2>
+        </div>
+    );
+}
+
+// Fonction pour afficher la liste des albums sur deux colonnes
+function List({ albums }) {
+    // Diviser les albums en deux parties
+    const middleIndex = Math.ceil(albums.length / 2);
+    const firstHalf = albums.slice(0, middleIndex);
+    const secondHalf = albums.slice(middleIndex);
+
+    return (
+        <div className="albums-container">
+            <div className="column-left">
+                <ul>
+                    {firstHalf.map(album => (
+                        <li key={album.id}>
+                            <Link to={`/album/${album.id}`} className="album-link">{album.name}</Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div className="column-right">
+                <ul>
+                    {secondHalf.map(album => (
+                        <li key={album.id}>
+                            <Link to={`/album/${album.id}`} className="album-link">{album.name}</Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    );
+}
+
+// Fonction pour récupérer les données des albums depuis l'API
+function GetData({ page, setPage, limit }) {
     const [albums, setAlbums] = useState([]);
     const [error, setError] = useState(null);
-    const [page, setPage] = useState(1); // Page actuelle
-    const limit = 20; // Limite d'albums par page
 
     useEffect(() => {
         const fetchAlbums = async () => {
@@ -22,32 +61,49 @@ function AlbumList() {
         };
 
         fetchAlbums();
-    }, [page]);
+    }, [page, limit]);
+
+    return <List albums={albums} />;
+}
+
+// Fonction pour afficher la liste des albums avec gestion de la pagination
+function AlbumList() {
+    const [page, setPage] = useState(1); // Page actuelle
+    const [inputPage, setInputPage] = useState(1); // Page entrée par l'utilisateur
+    const limit = 20; // Limite d'albums par page
+    const totalPages = 82; // Nombre total de pages
 
     const handleNextPage = () => {
-        setPage(prevPage => prevPage + 1);
+        setPage(prevPage => Math.min(prevPage + 1, totalPages));
     };
 
     const handlePrevPage = () => {
         setPage(prevPage => Math.max(prevPage - 1, 1));
     };
 
+    const handleInputChange = (e) => {
+        const pageNumber = parseInt(e.target.value);
+        setInputPage(pageNumber); // Met à jour l'état de la page entrée par l'utilisateur
+    };
+
+    const handlePageBlur = () => {
+        const pageNumber = parseInt(inputPage);
+        if (pageNumber >= 1 && pageNumber <= totalPages) {
+            setPage(pageNumber); // Change la page si le numéro entré est valide
+        } else {
+            // Gérer les erreurs de saisie de l'utilisateur (par exemple, afficher un message d'erreur)
+            console.error("Numéro de page invalide");
+        }
+    };
+
     return (
-        <div className='main'>
-            <h2>Liste des Albums</h2>
-            {error && <p>Une erreur est survenue: {error}</p>}
-            <ul>
-                {albums.map(album => (
-                    <li key={album.id}>
-                        
-                        <Link to={`/albums/${album.id}`}>{album.name}</Link>
-                    </li>
-                ))}
-            </ul>
+        <div>
+            <Header />
+            <GetData page={page} setPage={setPage} limit={limit} />
             <div className='navigation'>
-                <button onClick={handlePrevPage} disabled={page === 1}>Page précédente</button>
-                <span> Page {page} sur 82 </span>
-                <button onClick={handleNextPage}>Page suivante</button>
+                <button onClick={handlePrevPage} disabled={page === 1}>&#9664;</button>
+                <span> Page <input type="number" value={inputPage} onChange={handleInputChange} onBlur={handlePageBlur} /> sur {totalPages} </span>
+                <button onClick={handleNextPage} disabled={page === totalPages}>&#9654;</button>
             </div>
         </div>
     );
