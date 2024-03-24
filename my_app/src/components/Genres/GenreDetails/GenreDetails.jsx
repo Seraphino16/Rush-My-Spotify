@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import AlbumContainer from '../../Album/AlbumContainer';
 
 function GenreDetails() {
@@ -58,12 +58,21 @@ function GenreDetails() {
   return (
     <div className="main">
       <h1>Albums de genre : {genre.name}</h1>
-      <AlbumContainer albums={currentAlbums} />
-      <div className='navigation'>
+      
+      {currentAlbums.length > 0 ?
+
+      <>
+       <AlbumContainer albums={currentAlbums} />
+       <div className='navigation'>
         <button onClick={handlePrevPage} disabled={currentPage === 1}>Page précédente</button>
         <span> Page {currentPage}  </span>
         <button onClick={handleNextPage}>Page suivante</button>
       </div>
+      </>     
+      
+      : 'Loading...'}
+      
+      
     </div>
   );
 }

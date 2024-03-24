@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import AlbumContainer from '../AlbumContainer';
 
 // Fonction Header pour afficher l'en-tête de la page
@@ -7,37 +6,6 @@ function Header() {
     return (
         <div className='header-list main'>
             <h2 className='title-list'>Liste des Albums</h2>
-        </div>
-    );
-}
-
-// Fonction pour afficher la liste des albums sur deux colonnes
-function List({ albums }) {
-    // Diviser les albums en deux parties
-    const middleIndex = Math.ceil(albums.length / 2);
-    const firstHalf = albums.slice(0, middleIndex);
-    const secondHalf = albums.slice(middleIndex);
-
-    return (
-        <div className="albums-container main">
-            <div className="column-left">
-                <ul>
-                    {firstHalf.map(album => (
-                        <li key={album.id}>
-                            <Link to={`/albums/${album.id}`} className="album-link">{album.name}</Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div className="column-right">
-                <ul>
-                    {secondHalf.map(album => (
-                        <li key={album.id}>
-                            <Link to={`/albums/${album.id}`} className="album-link">{album.name}</Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
         </div>
     );
 }
@@ -65,7 +33,12 @@ function GetData({ page, setPage, limit }) {
     }, [page, limit]);
 
     // return <List albums={albums} />;
-    return <AlbumContainer albums={albums} />
+    return (
+        <>
+        {error && <p>Nous rencontrons un problème avec la récupération des données</p>}
+        <AlbumContainer albums={albums} />
+        </>
+    )
 }
 
 // Fonction pour afficher la liste des albums avec gestion de la pagination
