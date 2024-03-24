@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AlbumContainer from '../AlbumContainer';
 
 // Fonction Header pour afficher l'en-tête de la page
 function Header() {
@@ -63,7 +64,8 @@ function GetData({ page, setPage, limit }) {
         fetchAlbums();
     }, [page, limit]);
 
-    return <List albums={albums} />;
+    // return <List albums={albums} />;
+    return <AlbumContainer albums={albums} />
 }
 
 // Fonction pour afficher la liste des albums avec gestion de la pagination
@@ -99,7 +101,9 @@ function AlbumList() {
     return (
         <div>
             <Header />
+            <div className='main'>
             <GetData page={page} setPage={setPage} limit={limit} />
+            </div>
             <div className='navigation main'>
                 <button onClick={handlePrevPage} disabled={page === 1}>&#9664;</button>
                 <span> Page <input type="number" value={inputPage} onChange={handleInputChange} onBlur={handlePageBlur} /> sur {totalPages} </span>
