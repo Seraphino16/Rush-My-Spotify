@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import AlbumContainer from '../../Album/AlbumContainer';
 
 function GenreDetails() {
   const { genreId } = useParams();
@@ -57,16 +58,7 @@ function GenreDetails() {
   return (
     <div className="main">
       <h1>Albums de genre : {genre.name}</h1>
-      <div className="album-container">
-        {currentAlbums.map(album => (
-          <div key={album.id} className="album">
-            <Link to={`/albums/${album.id}`}>
-              <img src={album.cover} alt={album.name} />
-              {album.name}
-            </Link>
-          </div>
-        ))}
-      </div>
+      <AlbumContainer albums={currentAlbums} />
       <div className='navigation'>
         <button onClick={handlePrevPage} disabled={currentPage === 1}>Page précédente</button>
         <span> Page {currentPage}  </span>

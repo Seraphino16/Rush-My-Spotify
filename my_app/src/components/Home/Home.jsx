@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AlbumContainer from '../Album/AlbumContainer';
 
 
 function Home() {
@@ -47,17 +48,7 @@ function Home() {
         <div className="main">
           <h1>Bienvenue sur Spotify</h1>
           <h2>Que voulez-vous écouter ? </h2>
-          <div className="album-container">
-
-            {randomAlbums.map(album => (
-              <div key={album.id} className="album">
-                <Link to={`/albums/${album.id}`}>
-                  <img src={album.cover} alt={album.name} />
-                  {album.name}
-              </Link>
-              </div>
-            ))}
-          </div>
+          <AlbumContainer albums={randomAlbums} />
         </div>
       );
 }
