@@ -78,5 +78,3 @@ function GenreDetails() {
 }
 
 export default GenreDetails;
-
-
