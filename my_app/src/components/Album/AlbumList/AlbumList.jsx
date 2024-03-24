@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import AlbumContainer from '../AlbumContainer';
 
 // Fonction Header pour afficher l'en-tête de la page
@@ -7,37 +6,6 @@ function Header() {
     return (
         <div className='header-list main'>
             <h2 className='title-list'>Liste des Albums</h2>
-        </div>
-    );
-}
-
-// Fonction pour afficher la liste des albums sur deux colonnes
-function List({ albums }) {
-    // Diviser les albums en deux parties
-    const middleIndex = Math.ceil(albums.length / 2);
-    const firstHalf = albums.slice(0, middleIndex);
-    const secondHalf = albums.slice(middleIndex);
-
-    return (
-        <div className="albums-container main">
-            <div className="column-left">
-                <ul>
-                    {firstHalf.map(album => (
-                        <li key={album.id}>
-                            <Link to={`/albums/${album.id}`} className="album-link">{album.name}</Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div className="column-right">
-                <ul>
-                    {secondHalf.map(album => (
-                        <li key={album.id}>
-                            <Link to={`/albums/${album.id}`} className="album-link">{album.name}</Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
         </div>
     );
 }
@@ -65,25 +33,29 @@ function GetData({ page, setPage, limit }) {
     }, [page, limit]);
 
     // return <List albums={albums} />;
-    return <AlbumContainer albums={albums} />
+    return (
+        <>
+        {error && <p>Nous rencontrons un problème avec la récupération des données</p>}
+        <AlbumContainer albums={albums} />
+        </>
+    )
 }
 
 // Fonction pour afficher la liste des albums avec gestion de la pagination
 function AlbumList() {
-    const [page, setPage] = useState(1); // Page actuelle
-    const [inputPage, setInputPage] = useState(1); // Page entrée par l'utilisateur
-    const limit = 20; // Limite d'albums par page
-    const totalPages = 82; // Nombre total de pages
-
-    const handleNextPage = () => {
+    const [page, setPage] = useState(1);
+    const [inputPage, setInputPage] = useState(1);
+    const limit = 20;
+    const totalPages = 82;
+    const nextPage = () => {
         setPage(prevPage => Math.min(prevPage + 1, totalPages));
     };
 
-    const handlePrevPage = () => {
+    const prevPage = () => {
         setPage(prevPage => Math.max(prevPage - 1, 1));
     };
 
-    const handleInputChange = (e) => {
+    const inputChange = (e) => {
         const pageNumber = parseInt(e.target.value);
         setInputPage(pageNumber); // Met à jour l'état de la page entrée par l'utilisateur
     };
@@ -105,9 +77,9 @@ function AlbumList() {
             <GetData page={page} setPage={setPage} limit={limit} />
             </div>
             <div className='navigation main'>
-                <button onClick={handlePrevPage} disabled={page === 1}>&#9664;</button>
-                <span> Page <input type="number" value={inputPage} onChange={handleInputChange} onBlur={handlePageBlur} /> sur {totalPages} </span>
-                <button onClick={handleNextPage} disabled={page === totalPages}>&#9654;</button>
+                <button onClick={prevPage} disabled={page === 1}>&#9664;</button>
+                <span> Page <input type="number" value={inputPage} onChange={inputChange} onBlur={handlePageBlur} /> sur {totalPages} </span>
+                <button onClick={nextPage} disabled={page === totalPages}>&#9654;</button>
             </div>
         </div>
     );

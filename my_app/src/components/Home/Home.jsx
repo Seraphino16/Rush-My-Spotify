@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import AlbumContainer from '../Album/AlbumContainer';
 
 
@@ -39,7 +38,7 @@ function Home() {
 
     useEffect(() => {
         fetchRandomsAlbums();
-    }, []);
+    });
 
     
 
