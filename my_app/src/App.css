@@ -187,4 +187,58 @@ audio {
 }
 
 
+.list-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  /* justify-content: center; */
+}
 
+
+/* .list-container {
+  background-color: rgba(15,13,19,255);
+  padding: 50px;
+  color: white;
+} */
+
+/* .artist-item {
+  width: 360px;
+  height: 280px;
+} */
+
+.artist-card {
+  /* margin: 30px; */
+  padding: 4px;
+  width: 360px;
+  height: 300px;
+  border: 1px solid white;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.artist-card h3 {
+  font-size: 1.3em;
+  /* margin-bottom: 1vh; */
+}
+
+.artist-card .img-container {
+  max-width: 80%;
+  max-height: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.artist-card .img-container img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.artist-card:hover h3 {
+  color: #1ed760;
+}

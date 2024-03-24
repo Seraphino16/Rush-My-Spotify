@@ -9,19 +9,32 @@ function Header() {
     )
 }
 
-function List({ data }) {
+function List({data})
+{
     const listArtists = data.map(artist =>
-        <li key={artist.id}>
-            {artist.name}
-            <br />
-            {artist.description}
-            <br />
-            <Link to={`/artists/${artist.id}`}>Show details</Link>
+        
+        <li key={artist.id} className='artist-item'>
+            <Link to={`/artists/${artist.id}`} style={{textDecoration: 'none'}}>
+                <div className='artist-card'>
+                    <h3>{artist.name}</h3>
+                    <div className='img-container'>
+                        <img src={artist.photo} alt={artist.name} />
+                    </div>
+                    <div className='artist-card-info'>        
+                
+                    <br />
+                    {artist.description}
+                    <br />
+                    
+                    </div>
+                </div>
+            </Link>
         </li>
+        
     )
 
-    return (
-        <ul>{listArtists}</ul>
+    return (        
+        <ul className='list-columns'>{listArtists}</ul>
     )
 }
 
