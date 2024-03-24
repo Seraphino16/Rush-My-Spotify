@@ -5,6 +5,8 @@ function GenreDetails() {
   const { genreId } = useParams();
   const [genre, setGenre] = useState({});
   const [albums, setAlbums] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1); // Page actuelle
+  const [albumsPerPage] = useState(10); // Limite d'albums par page
 
   useEffect(() => {
     const fetchGenreDetails = async () => {
@@ -36,22 +38,41 @@ function GenreDetails() {
     fetchGenreDetails();
   }, [genreId]);
 
+ 
+  const indexOfFirstAlbum = (currentPage - 1) * albumsPerPage;
+  const indexOfLastAlbum = indexOfFirstAlbum + albumsPerPage;
+  const currentAlbums = albums.slice(indexOfFirstAlbum, indexOfLastAlbum);
+
+  const handleNextPage = () => {
+    setCurrentPage(prevPage => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+  };
+
   return (
     <div className="main">
       <h1>Albums de genre : {genre.name}</h1>
-      <ul>
-        {albums.map(album => (
-          <li key={album.id}>
+      <div className="album-container">
+        {currentAlbums.map(album => (
+          <div key={album.id} className="album">
             <Link to={`/albums/${album.id}`}>
               <img src={album.cover} alt={album.name} />
               {album.name}
             </Link>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
+      <div className='navigation'>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>Page précédente</button>
+        <span> Page {currentPage}  </span>
+        <button onClick={handleNextPage}>Page suivante</button>
+      </div>
     </div>
   );
 }
 
 export default GenreDetails;
+
 

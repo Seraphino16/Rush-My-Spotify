@@ -1,18 +1,19 @@
 .album-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px; 
   }
   
   .album {
     border: 1px solid #ccc;
     padding: 10px;
+    width: 300px;
+    text-align: center;
   }
   
   .album img {
     width: 100%; 
+    margin-bottom: 5px;
   }
   
-  .album h3, .album p {
-    margin: 0;
-  }
+ 

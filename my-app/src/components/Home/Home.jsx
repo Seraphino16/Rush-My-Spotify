@@ -18,7 +18,7 @@ function Home() {
 
             const suffledData = shuffleArray(data);
 
-            const randomSelection = suffledData.slice(0, 10);
+            const randomSelection = suffledData.slice(0, 24);
             setRandomAlbums(randomSelection);
         } catch (error) {
             console.log('Erreur : ', error);
@@ -38,6 +38,8 @@ function Home() {
     useEffect(() => {
         fetchRandomsAlbums();
     }, []);
+
+    
 
 
     return (

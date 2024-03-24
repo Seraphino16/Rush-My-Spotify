@@ -85,7 +85,7 @@ function AlbumDetailsDisplay({ albumDetails, currentTrackName, currentTrack, isP
     }
 
     return (
-        <div className="album-details-container">
+        <div className="album-details-container main">
             <div className="album-grid">
                 <div className="album-cover">
                     <AlbumHeader cover={albumDetails.album.cover} />
