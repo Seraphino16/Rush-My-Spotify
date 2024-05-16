@@ -38,7 +38,7 @@ function Home() {
 
     useEffect(() => {
         fetchRandomsAlbums();
-    });
+    }, []);
 
     
 
